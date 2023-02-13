@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  align-items: center;
+}
+
+.CTA {
+  display: flex;
+  fill: #1db954;
+  background: black;
+  padding: 0.8125rem 1.4375rem;
+  color: #fff;
+  border-radius: 0.25rem;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
