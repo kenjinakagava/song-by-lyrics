@@ -1,0 +1,45 @@
+.landingNav {
+  position: relative;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.landingNav__list {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0rem;
+  transform: translateX(100%);
+  transition: all 250ms;
+  display: flex;
+  padding-top: 5rem;
+  padding-right: 2rem;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  &--active {
+    @extend .landingNav__list;
+    transform: translateY(0);
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  @media (min-width: 768px) {
+    position: static;
+    gap: 1rem;
+    flex-direction: row;
+    transform: translateY(0);
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
+
+.landingNav__list__item {
+  font-size: 1.5rem;
+}

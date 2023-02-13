@@ -1,0 +1,23 @@
+.landing-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.landing-header__list {
+}
+
+.landing-header__logo--link {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  @media (min-width: 768px) {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+.landing-header__logo {
+}
