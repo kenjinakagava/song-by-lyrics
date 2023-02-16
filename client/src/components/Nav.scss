@@ -30,6 +30,8 @@
       &:last-child {
         margin-left: auto;
       }
+      &__note {
+      }
     }
     &--active {
       @extend .landingNav__list;

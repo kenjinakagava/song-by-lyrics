@@ -18,7 +18,6 @@ app.listen(3000);
 app.post("/login", (req: Request, res: Response) => {
   // get authorization code
   const code = req?.body?.code;
-
   const spotifyApi = new spotifyWebApi({
     redirectUri: uri,
     clientId: id,

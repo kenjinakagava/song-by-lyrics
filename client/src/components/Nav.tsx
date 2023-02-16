@@ -1,9 +1,9 @@
 import "./Nav.scss";
 import formatLink from "../utils/formatLink";
 import Hamburger from "./Hamburger";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { accessTokenContext } from "../context/accessToken";
+import Cookies from "js-cookie";
 
 interface NavProps {
   navItems: Array<string>;
@@ -12,9 +12,14 @@ interface NavProps {
 const loginUrl = import.meta.env.VITE_AUTH_URL;
 const logoutUrl = "https://www.spotify.com/us/logout/";
 
+const handleLogout = () => {
+  Cookies.remove("accessToken");
+};
+
 const Nav = ({ navItems }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { accessToken } = useContext(accessTokenContext);
+  const accessToken = Cookies.get("accessToken");
+
   return (
     <nav className="landingNav">
       <ul className={isOpen ? "landingNav__list--active" : "landingNav__list"}>
@@ -24,7 +29,7 @@ const Nav = ({ navItems }: NavProps) => {
           </li>
         ))}
         <li className="landingNav__list__item">
-          <a href={accessToken ? logoutUrl : loginUrl}>
+          <a href={accessToken ? logoutUrl : loginUrl} onClick={handleLogout}>
             {accessToken ? "Log out" : "Log in"}
           </a>
         </li>

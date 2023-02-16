@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { accessTokenContext } from "../context/accessToken";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import axios from "axios";
 
 const useAuth = (code: string) => {
-  const { accessToken, setAccessToken } = useContext(accessTokenContext);
   const [refreshToken, setRefreshToken] = useState("");
   const [expiresIn, setExpiresIn] = useState(3600);
   useEffect(() => {
@@ -12,13 +11,16 @@ const useAuth = (code: string) => {
         code,
       })
       .then((res) => {
-        setAccessToken(res.data.accessToken);
+        Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
+        // hide code in the url path
         window.history.pushState({}, "", "/");
       })
       .catch((err: any) => {
+        console.log(code);
         console.log(err);
+        console.log(code);
       });
   }, [code]);
 
@@ -31,7 +33,9 @@ const useAuth = (code: string) => {
             refreshToken: refreshToken,
           })
           .then((res) => {
-            setAccessToken(res.data.accessToken);
+            Cookies.set("accessToken", res.data.accessToken, {
+              expires: 1 / 24,
+            });
             setExpiresIn(res.data.expiresIn);
           })
           .catch((err) => {
@@ -42,8 +46,6 @@ const useAuth = (code: string) => {
       return () => clearInterval(interval);
     }
   }, [refreshToken, expiresIn]);
-
-  return accessToken;
 };
 
 export default useAuth;
