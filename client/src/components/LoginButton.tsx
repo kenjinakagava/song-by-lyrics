@@ -1,4 +1,5 @@
 const AUTH_URL = import.meta.env.VITE_AUTH_URL;
+import "./LoginButton.scss";
 
 const LoginButton = () => {
   return (

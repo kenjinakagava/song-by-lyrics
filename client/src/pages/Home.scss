@@ -1,0 +1,18 @@
+h1 {
+  font-size: 2.75rem;
+  margin: 1.5rem 0;
+  @media (min-width: 768px) {
+    font-size: 5rem;
+  }
+}
+
+h2 {
+  margin-bottom: 3rem;
+}
+
+main {
+  width: 100%;
+  @media (min-width: 768px) {
+    width: unset;
+  }
+}

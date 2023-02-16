@@ -1,11 +1,14 @@
-.landing-header {
-  position: relative;
+.header {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
   height: 3rem;
+  position: relative;
+  &__logo {
+    width: 2.25rem;
+    display: flex;
+  }
   &::after {
     position: absolute;
     bottom: 0px;
@@ -15,20 +18,8 @@
     height: 1px;
     background: rgba(0, 0, 0, 0.08);
   }
-}
-
-.left-wrapper {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
   @media (min-width: 768px) {
     justify-content: unset;
+    gap: 1rem;
   }
-}
-
-.landing-header__logo--link {
-  display: flex;
-  width: 2.25rem;
 }

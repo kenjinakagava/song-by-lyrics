@@ -1,9 +1,6 @@
 .hamburger {
   position: fixed;
-  width: 36px;
-  height: 36px;
   z-index: 999;
-  right: 2rem;
   @media (min-width: 768px) {
     display: none;
   }

@@ -1,5 +1,4 @@
 import "./Hamburger.scss";
-import { useState } from "react";
 import hamburger from "../assets/hamburger.svg";
 import closeHamburger from "../assets/closeHamburger.svg";
 
@@ -12,7 +11,6 @@ const Hamburger = ({ isOpen, setIsOpen }: HamburgerMenuProps) => {
   const handleClick = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
   };
-  console.log(isOpen);
   return (
     <button
       className="hamburger"

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { accessTokenContext } from "../context/accessToken";
 import axios from "axios";
 
 const useAuth = (code: string) => {
-  const [accessToken, setAccessToken] = useState("");
+  const { accessToken, setAccessToken } = useContext(accessTokenContext);
   const [refreshToken, setRefreshToken] = useState("");
-  const [expiresIn, setExpiresIn] = useState<number>(3600);
-
+  const [expiresIn, setExpiresIn] = useState(3600);
   useEffect(() => {
     axios
       .post("http://localhost:3000/login", {
@@ -31,7 +31,7 @@ const useAuth = (code: string) => {
             refreshToken: refreshToken,
           })
           .then((res) => {
-            setAccessToken(res.data.acessToken);
+            setAccessToken(res.data.accessToken);
             setExpiresIn(res.data.expiresIn);
           })
           .catch((err) => {
