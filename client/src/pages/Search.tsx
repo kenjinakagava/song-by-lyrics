@@ -4,21 +4,25 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import useAuth from "../hooks/useAuth";
+import getUserPlaylists from "../utils/getUserPlaylists";
 
 const code = new URLSearchParams(window.location.search).get("code");
 
 const Search = () => {
   const navigate = useNavigate();
+
+  const accessToken = Cookies.get("accessToken");
+  // if there is no token and the code is truthy
+  useAuth(code ? code : "");
+
   useEffect(() => {
-    if (!code) {
-      navigate("/");
+    if (accessToken !== undefined) {
+      getUserPlaylists(accessToken);
+    }
+    if (!accessToken && !code) {
+      navigate("/require-login");
     }
   }, []);
-
-  // if there is no token and the code is truthy
-  if (Cookies.get("accessToken") === undefined && code) {
-    useAuth(code ? code : "");
-  }
 
   return (
     <>

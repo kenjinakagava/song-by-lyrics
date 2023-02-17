@@ -37,6 +37,7 @@ const useAuth = (code: string) => {
               expires: 1 / 24,
             });
             setExpiresIn(res.data.expiresIn);
+            console.log("token refreshed");
           })
           .catch((err) => {
             console.log(err);
