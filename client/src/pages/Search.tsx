@@ -22,7 +22,7 @@ const Search = () => {
     if (!accessToken && !code) {
       navigate("/require-login");
     }
-  }, []);
+  }, [accessToken]);
 
   return (
     <>
