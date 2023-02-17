@@ -18,34 +18,29 @@ const useAuth = (code: string) => {
         window.history.pushState({}, "", "/");
       })
       .catch((err: any) => {
-        console.log(code);
         console.log(err);
-        console.log(code);
       });
   }, [code]);
 
   useEffect(() => {
-    // prevent error where the api is called without a valid refresh token in initial render
-    if (refreshToken !== "" && refreshToken !== undefined) {
-      const interval = setInterval(() => {
-        axios
-          .post("http://localhost:3000/refresh", {
-            refreshToken: refreshToken,
-          })
-          .then((res) => {
-            Cookies.set("accessToken", res.data.accessToken, {
-              expires: 1 / 24,
-            });
-            setExpiresIn(res.data.expiresIn);
-            console.log("token refreshed");
-          })
-          .catch((err) => {
-            console.log(err);
-            console.log("error with refresh api call");
+    const interval = setInterval(() => {
+      axios
+        .post("http://localhost:3000/refresh", {
+          refreshToken: refreshToken,
+        })
+        .then((res) => {
+          Cookies.set("accessToken", res.data.accessToken, {
+            expires: 1 / 24,
           });
-      }, (expiresIn - 60) * 1000);
-      return () => clearInterval(interval);
-    }
+          setExpiresIn(res.data.expiresIn);
+          console.log("token refreshed");
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("error with refresh api call");
+        });
+    }, (expiresIn - 60) * 1000);
+    return () => clearInterval(interval);
   }, [refreshToken, expiresIn]);
 };
 
