@@ -3,27 +3,32 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 const useAuth = (code: string) => {
-  const [refreshToken, setRefreshToken] = useState("");
-  const [expiresIn, setExpiresIn] = useState(3600);
+  const [refreshToken, setRefreshToken] = useState(Cookies.get("refreshToken"));
   useEffect(() => {
-    axios
-      .post("http://localhost:3000/login", {
-        code,
-      })
-      .then((res) => {
-        Cookies.set("accessToken", res.data.accessToken, { expires: 1 / 24 });
-        setRefreshToken(res.data.refreshToken);
-        setExpiresIn(res.data.expiresIn);
-        // hide code in the url path
-        window.history.pushState({}, "", "/");
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
+    if (!Cookies.get("accessToken")) {
+      axios
+        .post("http://localhost:3000/login", {
+          code,
+        })
+        .then((res) => {
+          Cookies.set("accessToken", res.data.accessToken, {
+            expires: 1 / 24,
+          });
+          Cookies.set("refreshToken", res.data.refreshToken, {
+            expires: 1 / 25,
+          });
+          setRefreshToken(res.data.refreshToken);
+          // hide code in the url path
+          window.history.pushState({}, "", "/");
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    }
   }, [code]);
-
   useEffect(() => {
-    const interval = setInterval(() => {
+    if (refreshToken !== undefined) {
+      console.log(`refresh token: ${refreshToken}`);
       axios
         .post("http://localhost:3000/refresh", {
           refreshToken: refreshToken,
@@ -32,16 +37,14 @@ const useAuth = (code: string) => {
           Cookies.set("accessToken", res.data.accessToken, {
             expires: 1 / 24,
           });
-          setExpiresIn(res.data.expiresIn);
           console.log("token refreshed");
         })
         .catch((err) => {
           console.log(err);
           console.log("error with refresh api call");
         });
-    }, (expiresIn - 60) * 1000);
-    return () => clearInterval(interval);
-  }, [refreshToken, expiresIn]);
+    }
+  }, [refreshToken]);
 };
 
 export default useAuth;
