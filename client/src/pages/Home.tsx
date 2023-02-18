@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { useEffect } from "react";
 const Home = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     if (Cookies.get("accessToken")) {
       navigate("/search");

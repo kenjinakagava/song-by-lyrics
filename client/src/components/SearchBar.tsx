@@ -25,6 +25,7 @@ const SearchBar = ({ placeholder, minLength }: SearchBarProps) => {
             className="search__icon"
             src={search}
             aria-hidden="true"
+            decoding="async"
             alt="magnifying glass icon"
           />
         </button>

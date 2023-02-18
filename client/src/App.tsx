@@ -6,6 +6,15 @@ import Search from "./pages/Search";
 import RequireLogin from "./pages/RequireLogin";
 
 function App() {
+  // https://caniuse.com/indexeddb
+  if (!("indexedDB" in window)) {
+    return (
+      <div>
+        Please use to a modern browser (such as Google Chrome) to navigate this
+        website
+      </div>
+    );
+  }
   return (
     <Router>
       <Routes>

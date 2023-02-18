@@ -22,8 +22,13 @@ const getUserPlaylists = (accessToken: string) => {
           // get the name of each track on each playlist
           .then((res) =>
             console.log(
-              //res.data.items.map((songData: any) => songData.track.name)
-              res.data.items
+              res.data.items.map((songData: any) => songData.track.name),
+
+              res.data.items.map(
+                (songData: any) => songData.track.external_urls.spotify
+              ),
+
+              res.data.items.map((songData: any) => songData.track.preview_url)
             )
           )
       )

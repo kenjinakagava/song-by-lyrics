@@ -17,7 +17,7 @@ const Search = () => {
 
   useEffect(() => {
     if (accessToken !== undefined) {
-      getUserPlaylists(accessToken);
+      //getUserPlaylists(accessToken);
     }
     if (!accessToken && !code) {
       navigate("/require-login");
