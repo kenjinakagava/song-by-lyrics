@@ -15,7 +15,7 @@ const useAuth = (code: string) => {
             expires: 1 / 24,
           });
           Cookies.set("refreshToken", res.data.refreshToken, {
-            expires: 1 / 25,
+            expires: 30,
           });
           setRefreshToken(res.data.refreshToken);
           // hide code in the url path
