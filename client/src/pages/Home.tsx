@@ -2,8 +2,6 @@ import LandingHeader from "../components/LandingHeader";
 import LoginButton from "../components/LoginButton";
 import "./Home.scss";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { useEffect } from "react";
 import useVerifyAccessToken from "../hooks/useVerifyAccessToken";
 import useAuth from "../hooks/useAuth";
 const Home = () => {

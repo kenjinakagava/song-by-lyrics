@@ -1,13 +1,27 @@
 import axios from "axios";
-import { useState } from "react";
-import setDatabase, { SongList } from "../db/setDatabase";
+import setDatabase from "../db/setDatabase";
+import { Song, SongList } from "../interfaces/songsInterface";
 
 const getUserPlaylists = (accessToken: string) => {
   // get user playlists
   const songList: SongList = {
     songs: [],
   };
-
+  let filteredList: SongList = {
+    songs: [],
+  };
+  const filteredSongList = () => {
+    filteredList.songs = songList.songs.filter(
+      (song: Song, index: number, songList: Song[]) => {
+        return (
+          index ===
+          songList.findIndex(
+            (songInList: Song) => songInList.name === song.name
+          )
+        );
+      }
+    );
+  };
   axios
     .get("https://api.spotify.com/v1/me/playlists", {
       headers: {
@@ -38,8 +52,9 @@ const getUserPlaylists = (accessToken: string) => {
       )
     )
     .then(() => {
-      console.log(songList);
-      setDatabase(songList);
+      filteredSongList();
+      console.log(filteredList);
+      setDatabase(filteredList);
     });
 };
 

@@ -1,14 +1,5 @@
 import { set } from "idb-keyval";
-
-interface Song {
-  name: string;
-  preview_url: string;
-  spotify_url: string;
-}
-
-export interface SongList {
-  songs: Song[];
-}
+import { SongList } from "../interfaces/songsInterface";
 
 const setDatabase = ({ songs }: SongList) => {
   console.log(songs);

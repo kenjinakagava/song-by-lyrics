@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const useAuth = (code: string) => {
+const useAuth = (code?: string) => {
   const [refreshToken, setRefreshToken] = useState(Cookies.get("refreshToken"));
   useEffect(() => {
-    if (!Cookies.get("accessToken")) {
+    if (!Cookies.get("accessToken") && code) {
       axios
         .post("http://localhost:3000/login", {
           code,
