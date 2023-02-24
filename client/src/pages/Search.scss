@@ -1,0 +1,21 @@
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    div {
+      display: flex;
+    }
+  }
+}
+
+.songs-pagination {
+  display: flex;
+  cursor: pointer;
+  gap: 0.5rem;
+  justify-content: center;
+  user-select: none;
+}
+
+.pagination__active {
+  color: red;
+}

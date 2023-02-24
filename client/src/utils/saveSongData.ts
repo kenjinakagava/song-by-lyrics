@@ -2,7 +2,7 @@ import axios from "axios";
 import setDatabase from "../db/setDatabase";
 import { Song, SongList } from "../interfaces/songsInterface";
 
-const getUserPlaylists = (accessToken: string) => {
+const saveSongData = (accessToken: string) => {
   // get user playlists
   const songList: SongList = {
     songs: [],
@@ -58,4 +58,4 @@ const getUserPlaylists = (accessToken: string) => {
     });
 };
 
-export default getUserPlaylists;
+export default saveSongData;

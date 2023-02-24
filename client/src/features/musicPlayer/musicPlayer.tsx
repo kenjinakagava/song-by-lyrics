@@ -38,7 +38,6 @@ const MusicPlayer = ({
       newSong.play();
     }
   };
-  console.log(song);
 
   return (
     <button className="play-button" onClick={toggleIsPlaying}>
