@@ -15,7 +15,7 @@ import ReactPaginate from "react-paginate";
 const code = new URLSearchParams(window.location.search).get("code");
 
 const Search = () => {
-  const itemsPerPage = 5;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [isPlaying, setIsPlaying] = useState("");
@@ -28,6 +28,7 @@ const Search = () => {
       setIsPlaying("");
     },
   });
+
   const [currentSong, setCurrentSong] = useState<Howl>(newSong);
   const [songs, setSongs] = useState<SongList>();
   let songCount =

@@ -1,13 +1,3 @@
-.songs-list {
-  display: flex;
-  flex-direction: column;
-  &__item {
-    div {
-      display: flex;
-    }
-  }
-}
-
 .songs-pagination {
   display: flex;
   cursor: pointer;

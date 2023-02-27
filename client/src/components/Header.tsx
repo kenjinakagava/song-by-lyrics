@@ -2,7 +2,7 @@ import logo from "../assets/logo.svg";
 import "./Header.scss";
 import Nav from "./Nav";
 
-const navItems = ["Search", "Search by Album"];
+const navItems = ["Search", "Import or Export"];
 
 const Header = () => {
   return (

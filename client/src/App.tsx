@@ -1,9 +1,9 @@
 import "./App.css";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SearchByAlbum from "./pages/SearchByAlbum";
 import Search from "./pages/Search";
 import RequireLogin from "./pages/RequireLogin";
+import ImportOrExport from "./pages/ImportOrExport";
 
 function App() {
   // https://caniuse.com/indexeddb
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/search-by-album" element={<SearchByAlbum />} />
+        <Route path="/import-or-export" element={<ImportOrExport />} />
         <Route path="/require-login" element={<RequireLogin />} />
       </Routes>
     </Router>
